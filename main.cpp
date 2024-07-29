@@ -78,12 +78,13 @@ int main() {
             for (int j = 0; j <= 6; ++j){
                 if (grid[i][j] == grid[i][j+1] && grid[i][j] == place[p%2]){
                     count ++;
-                    if (count == 4){
+                    if (count >= 3){
                         game_won = true;
-                        std::cout << "hassoul";
                         std::cout << "\n\nPlayer " << players[p%2] << " gagne la partie\n";
                         break;
                     }
+                } else {
+                    count = 0;
                 }
             }
         }
@@ -91,14 +92,50 @@ int main() {
         // gestion victoire colonnes
         count = 0;
         for (int i = 0; i <= 6; ++i){
-            for (int j = 0; j <= 5; ++j){
-                if (grid[j][i] == grid[j+1][i] && grid[i][j] == place[p%2]){
-                    if (count == 3){
+            for (int j = 0; j <= 6; ++j){
+                if (grid[i][j] == grid[i+1][j] && grid[i][j] == place[p%2]){
+                    count ++;
+                    if (count >= 3){
                         game_won = true;
-                        std::cout << "macaque";
                         std::cout << "\n\nPlayer " << players[p%2] << " gagne la partie\n";
                         break;
                     }
+                }
+            }
+        }
+
+        // gestion victoire diagonale decroissante
+        count = 0;
+        for (int i = 1; i <= 5; ++i){
+            for (int j = 1; j <= 5 ; ++j){
+                if (grid[i][j] == grid[i-1][j-1] && grid[i][j] == place[p%2]){
+                    count ++;
+                    std::cout << "count decroissant = " << count << "\n";
+                    if (count >= 4){
+                        game_won = true;
+                        std::cout << "\n\nPlayer " << players[p%2] << " gagne la partie\n";
+                        break;
+                    }
+                }else{
+                    count = 0;
+                }
+            }
+        }
+
+        // gestion victoire diagonale croissante
+        count = 0;
+        for (int i = 1; i <= 5; ++i){
+            for (int j = 1; j <= 5 ; ++j){
+                if (grid[i][j] == grid[i+1][j+1] && grid[i][j] == place[p%2]){
+                    count ++;
+                    std::cout << "count croissant = " << count << "\n";
+                    if (count >= 4){
+                        game_won = true;
+                        std::cout << "\n\nPlayer " << players[p%2] << " gagne la partie\n";
+                        break;
+                    }
+                }else {
+                    count = 0;
                 }
             }
         }
