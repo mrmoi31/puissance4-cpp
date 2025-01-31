@@ -140,7 +140,7 @@ int main() {
             }
         }
 
-        //p++;
+        p++;
 
         std::cout << "\n\ngame_won : " << game_won <<"\n\n";
     }
